@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dinosaur Train</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Momentjs -->
+  <script type="text/javascript" src= "assets/javascript/moment.js"></script>
+  
+  <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyA0OhhGX-rQer1ZeqFKM3M_n1EACUqo0pg",
+      authDomain: "dinosaurtrain-a2a02.firebaseapp.com",
+      databaseURL: "https://dinosaurtrain-a2a02.firebaseio.com",
+      storageBucket: "dinosaurtrain-a2a02.appspot.com",
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="header">
+      <img src="assets/images/header.png">
+    </div>
+
+    <div class="currentTrains"> 
+      <div class="divTitle">Current Schedules</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Train Name</th>
+              <th>Destination</th>
+              <th>Frequency (min)</th>
+              <th>Next Arrival</th>
+              <th>Minutes Away</th>
+            </tr> 
+              <tbody id="body"></tbody>
+          </thead>
+      </div>
+
+    <div class="addTrain">
+      <div class="divTitle">Add Train</div>
+    
+      <form id="train" class="train">
+          <label for="trainName"> Train Name: </label> <br>
+          <input type="text" name="trainName" class= "trainName" size="60" placeholder="train name"><br>
+
+          <label for="destination"> Destination: </label> <br>
+          <input type="text" name="destination" class= "destination" size="60" placeholder="destination name"><br>
+          
+          <label for="firstTrain"> First Train Time (HH:mm Military Time) </label> <br>
+          <input type="text" name="firstTrain" class= "firstTrain" size="60" placeholder="interval for arrivals"><br>
+          
+          <label for="frequency"> Frequency </label> <br>
+          <input type="text" name="frequency" class= "frequency" size="60" placeholder="frequency"><br>
+          <br>
+
+          <input type="submit" class="submit" value="Submit">
+      </form>
+    </div>
+  </div> <!-- for container-->
+
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <!-- Javascript -->
+    <script src="assets/javascript/app.js"></script>
+</body>
+</html>
