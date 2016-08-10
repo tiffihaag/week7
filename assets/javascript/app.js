@@ -5,8 +5,7 @@ var database = firebase.database();
 	var destination = "";
 	var firstTrain = "";
 	var frequency = "";
-
-	//var firstTimeConverted = moment(firstTime,"hh:mm").subtract(1, "years");
+	var tableElem = "";
 
 	$(".submit").on("click", function() {
 		console.log("this is working");
@@ -20,31 +19,42 @@ var database = firebase.database();
 			destination: destination,
 			firstTrain: firstTrain,
 			frequency: frequency,
-			//diff = moment(timeStamp:firebase.database.ServerValue.TIMESTAMP).diff(childSnapshot.val().startDate,"month", false)
 		}); //goes to database push
 
 			console.log("hello again");
 		return false;
 	}); //goes to submit onclick
 
-		// database.ref().on('child_added', function(childSnapshot) {
-		// 	console.log(childSnapshot.val());
-		// });
+		database.ref().on('child_added', function(childSnapshot) {
+		console.log(childSnapshot.val());
+		var tFrequency = childSnapshot.val().frequency;
+		var firstTime = childSnapshot.val().firstTrain; 
+		console.log("first time: " + firstTime);
+		var firstTimeConverted = moment(firstTime,"hh:mm").subtract(1, "years");
+		console.log(firstTimeConverted);
+		var currentTime = moment();
+		var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+		console.log(diffTime);
+		var tRemainder = diffTime % tFrequency;
+		var tMinutesTillTrain = tFrequency - tRemainder;
+		var nextTrain = moment().add(tMinutesTillTrain, "minutes")
 
-		// console.log("pushed to database")
-
-		// database.ref().on('child_added', function(childSnapshot) {
-		// console.log(childSnapshot.val());
-
-		//var tableElem = $('<tr>').attr("dataName", childSnapshot.val().trainName);
-			// tableElem.append($('<td>').text("dataName", childSnapshot.val().trainName));
-			// tableElem.append($('<td>').text("dataName", childSnapshot.val().location));
-			// tableElem.append($('<td>').text("dataName", childSnapshot.val().frequency));
-			// tableElem.append($('<td>').text("dataName", childSnapshot.val().nextArrival));
-			// tableElem.append($('<td>').text("dataName", childSnapshot.val().minutesAway));
-			//tableElem.append($('<td>').(diff);
-			//$('#body').append(tableElem);
+		var tableElem = $('<tr>').attr("dataName", childSnapshot.val().trainName);
+		tableElem.append($('<td>').text(childSnapshot.val().trainName));
+		tableElem.append($('<td>').text(childSnapshot.val().destination));
+		tableElem.append($('<td>').text(childSnapshot.val().firstTrain));
+		tableElem.append($('<td>').text(childSnapshot.val().frequency));
+		tableElem.append($('<td>').text(nextTrain));
+		tableElem.append($('<td>').text(tMinutesTillTrain));
+		//tableElem.append($('<td>').(diff);
+		$('#tBody').append(tableElem);
 
 		//function(errorObject) {
 			//console.log("Errors handled: " + errorObject.code);
 		//};
+
+		$('.trainName').val("");
+		$('.destination').val("");
+		$('.firstTrain').val("");
+		$('.frequency').val("");
+		});

@@ -16,17 +16,17 @@ body {
 	background-color: #99ccff;
 }
 
+.schedule {
+	background-color: #99ccff;
+	width: 100%;
+	color: white;
+	font-size: 22px;
+	font-weight: bold;
+}
+
 .currentTrains {
 	padding-top: 25px;
 	height: 300px;
-	background-color: white;
-	border-radius: 25px;
-	border-top: 6px solid #99ccff;
-}
-
-.addTrain {
-	padding-top: 25px;
-	height: 420px;
 	background-color: white;
 	border-radius: 25px;
 	border-top: 6px solid #99ccff;
@@ -40,24 +40,42 @@ body {
 	font-weight: bold;
 }
 
-.trainInputs {
-	padding-left: 50px;
-	padding-right: 50px;
-	padding-top: 10px;
-	font-size: 18px;
-	width: 100%;
+.addTrain {
+	padding-top: 25px;
+	margin-top: 10px;
+	height: 385px;
+	background-color: white;
+	border-radius: 25px;
+	border-top: 6px solid #99ccff;
 }
 
-.trainInputs input {
-	width: 100%;
+.addTrain input {
+	width: 96%;
+	margin-left: 20px;
+	margin-right: auto;
 	background-color: #DEF0FA;
 	color: black;
 	font-weight: bold;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
 	border-radius: 10px; 
 }
 
-.button:hover {
+.addTrain label {
+	padding-top: 3px;
+	padding-left: 8px;
+}
+
+.submit:hover {
     background-color: green;
+}
+
+.tableSched {
+	width: 100%;
+}
+
+.tableSched tr {
+	border-bottom: solid 1px black;
 }
